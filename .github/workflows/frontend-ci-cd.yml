@@ -24,7 +24,8 @@ jobs:
 
       - name: Build frontend
         run: |
-          PUBLIC_URL=/app/frontend npm run build
+          chmod +x custom-build.sh
+          ./custom-build.sh
         working-directory: frontend
 
       - name: Run tests
