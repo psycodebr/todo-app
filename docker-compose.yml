@@ -20,3 +20,4 @@ services:
       MYSQL_DATABASE: mydatabase
     ports:
       - "3306:3306"
+    
