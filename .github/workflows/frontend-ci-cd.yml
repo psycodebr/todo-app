@@ -22,15 +22,10 @@ jobs:
         run: npm install
         working-directory: frontend
 
-      - name: Build frontend
-        run: |
-          chmod +x custom-build.sh
-          ./custom-build.sh
-        working-directory: frontend
-
       - name: Run tests
         run: npm test
         working-directory: frontend
+
 
       # Aqui você pode adicionar etapas de implantação para o frontend
       # Por exemplo, implantar em um servidor de teste ou em um serviço de hospedagem como Netlify ou Vercel
