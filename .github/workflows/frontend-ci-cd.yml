@@ -1,0 +1,34 @@
+name: Frontend CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: frontend
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: frontend
+
+      - name: Run tests
+        run: npm test
+        working-directory: frontend
+
+      # Aqui você pode adicionar etapas de implantação para o frontend
+      # Por exemplo, implantar em um servidor de teste ou em um serviço de hospedagem como Netlify ou Vercel
