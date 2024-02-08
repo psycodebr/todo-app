@@ -2,7 +2,7 @@
 FROM node:alpine
 
 # Define o diretório de trabalho no contêiner
-WORKDIR /app
+WORKDIR /todo-app
 
 # Copia os arquivos do diretório local para o contêiner
 COPY . .
