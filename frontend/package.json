@@ -5,7 +5,7 @@
   "main": "scripts.js",
   "scripts": {
     "start": "http-server -p 3000 && react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build --output-path=app",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
