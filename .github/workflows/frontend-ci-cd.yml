@@ -33,7 +33,10 @@ jobs:
         with:
           node-version: '14'
       
-      - name: Start Docker containers
+      - name: Kill exists Docker containers and images
+        run: docker-compose down -rmi all
+
+      - name: Start Docker containers on app
         run: docker-compose up -d
 
 # Add steps to run any frontend tests here
