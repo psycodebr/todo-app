@@ -28,11 +28,26 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Set up Node.js
+     - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
 
-    
+      - name: Start Docker containers
+        run: docker-compose up -d
+
+      - name: Check if containers are running
+        id: check_containers
+        run: |
+          CONTAINER_COUNT=$(docker ps --filter "status=running" | wc -l)
+          if [ $CONTAINER_COUNT -gt 1 ]; then
+            echo "Containers are running"
+          else
+            echo "No containers are running"
+          fi
+
+      - name: Stop containers after 10 seconds if running
+        if: steps.check_containers.outputs.check_containers == 'Containers are running'
+        run: sleep 10 && docker-compose down
 
       # Add steps to run any frontend tests here
