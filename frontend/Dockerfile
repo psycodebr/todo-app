@@ -1,17 +1,17 @@
-# Usa a imagem Node.js
-FROM node:alpine
+# Use a imagem de node como base
+FROM node:latest
 
-# Define o diretório de trabalho no contêiner
+# Defina o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-# Copia os arquivos do diretório local para o contêiner
-COPY . .
+# Copie o arquivo package.json para o diretório de trabalho
+COPY package.json .
 
-# Instala as dependências
+# Instale as dependências do projeto
 RUN npm install
 
-# Expõe a porta 3000
-EXPOSE 3000
+# Copie os arquivos do código-fonte para o diretório de trabalho
+COPY . .
 
-# Comando para iniciar a aplicação
+# Especifique o comando padrão para ser executado quando o contêiner for iniciado
 CMD ["npm", "start"]
