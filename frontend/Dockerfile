@@ -7,7 +7,10 @@ WORKDIR /app
 # Copie o arquivo package.json para o diretório de trabalho
 COPY package.json .
 
-# Instale as dependências do projeto
+# Instale as dependências do projeto, incluindo react-scripts como uma dependência de desenvolvimento
+RUN npm install react-scripts --save-dev
+
+# Instale as demais dependências do projeto
 RUN npm install
 
 # Copie os arquivos do código-fonte para o diretório de trabalho

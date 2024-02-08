@@ -11,5 +11,8 @@
   },
   "dependencies": {
     "http-server": "^0.12.3"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.0"
   }
 }
