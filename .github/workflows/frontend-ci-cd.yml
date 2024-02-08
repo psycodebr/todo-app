@@ -39,4 +39,4 @@ jobs:
       - name: Start Docker containers on app
         run: docker-compose up -d
 
-# Add steps to run any frontend tests here
+      # Add steps to run any frontend tests here
