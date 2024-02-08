@@ -22,3 +22,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // Chama a função para buscar a lista de tarefas quando a página carregar
     fetchTodoList();
 });
+   

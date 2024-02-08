@@ -18,3 +18,4 @@ COPY . .
 
 # Especifique o comando padrão para ser executado quando o contêiner for iniciado
 CMD ["npm", "start"]
+ 
