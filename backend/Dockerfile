@@ -2,7 +2,7 @@
 FROM python:alpine
 
 # Define o diretório de trabalho no contêiner
-WORKDIR /todo-app
+WORKDIR /app
 
 # Copia os arquivos do diretório local para o contêiner
 COPY . .
