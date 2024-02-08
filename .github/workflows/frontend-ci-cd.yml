@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies and run backend tests
         run: |
-          cd backend-1
+          cd backend
           pip install -r requirements.txt
           python -m unittest discover -s tests
 
