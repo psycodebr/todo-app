@@ -31,7 +31,7 @@ jobs:
       - name: Run backend container
         run: docker run -d --name backend-1 backend-1
 
-        - name: Run frontend container
+      - name: Run frontend container
         run: docker run -d --name frontend-1 frontend-1
 
       - name: Wait for frontend container to start
