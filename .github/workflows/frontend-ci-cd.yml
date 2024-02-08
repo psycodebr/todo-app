@@ -28,14 +28,17 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Build frontend Docker image
-        run: docker build -t frontend-1 .
+      - name: Run backend container
+        run: docker run -d --name backend-1 backend-1
 
-      - name: Run frontend container
+        - name: Run frontend container
         run: docker run -d --name frontend-1 frontend-1
 
       - name: Wait for frontend container to start
         run: sleep 10s
+
+      - name: Check if backend container is running
+        run: docker ps | grep backend-1
 
       - name: Check if frontend container is running
         run: docker ps | grep frontend-1
