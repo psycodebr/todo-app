@@ -1,4 +1,4 @@
-name: Frontend CI/CD
+name: CI/CD Pipeline
 
 on:
   push:
@@ -6,26 +6,44 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+    
+    services:
+      db-1:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: test_database
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          node-version: '14'
+          python-version: '3.x'
 
-      - name: Install dependencies
-        run: npm install
-        working-directory: frontend
+      - name: Install dependencies and run backend tests
+        run: |
+          cd backend-1
+          pip install -r requirements.txt
+          python -m unittest discover -s tests
 
-      - name: Run tests
-        run: npm test
-        working-directory: frontend
+      - name: Build frontend Docker image
+        run: docker build -t frontend-1 .
 
+      - name: Run frontend container
+        run: docker run -d --name frontend-1 frontend-1
 
-      # Aqui você pode adicionar etapas de implantação para o frontend
-      # Por exemplo, implantar em um servidor de teste ou em um serviço de hospedagem como Netlify ou Vercel
+      - name: Wait for frontend container to start
+        run: sleep 10s
+
+      - name: Check if frontend container is running
+        run: docker ps | grep frontend-1
+
+      # Add steps to run any frontend tests here
